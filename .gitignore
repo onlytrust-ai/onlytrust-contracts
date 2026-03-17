@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Foundry
+cache/
+out/
+broadcast/
+
+# Hardhat
+artifacts/
+typechain-types/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Build
+build/
+
+# OS
+.DS_Store
+
+# Coverage
+coverage/
+lcov.info
