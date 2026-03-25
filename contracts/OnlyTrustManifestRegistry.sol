@@ -16,7 +16,8 @@ contract OnlyTrustManifestRegistry is IOnlyTrustManifestRegistry, Ownable2Step {
     constructor(address _owner) Ownable(_owner) {}
 
     function publishManifest(bytes32 manifestHash) external override {
-        require(manifests[manifestHash].timestamp == 0, "Already published");
+        ManifestRecord storage record = manifests[manifestHash];
+        require(record.agent == address(0), "Already published or revoked");
         manifests[manifestHash] = ManifestRecord({
             agent: msg.sender,
             timestamp: block.timestamp,

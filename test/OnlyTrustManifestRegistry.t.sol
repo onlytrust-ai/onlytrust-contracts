@@ -31,7 +31,7 @@ contract OnlyTrustManifestRegistryTest is Test {
         registry.publishManifest(hash);
 
         vm.prank(agent);
-        vm.expectRevert("Already published");
+        vm.expectRevert("Already published or revoked");
         registry.publishManifest(hash);
     }
 
