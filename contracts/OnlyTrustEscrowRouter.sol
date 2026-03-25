@@ -56,16 +56,28 @@ contract OnlyTrustEscrowRouter is
         uint256 feePercentBps,
         bytes calldata signature
     ) external override nonReentrant whenNotPaused {
+        require(feePercentBps <= 1000, "Max 10% fee");
         revert("Not implemented");
     }
 
     // --- Signer Rotation (24h timelock) ---
 
+    event SignerRotationCancelled(address indexed cancelledSigner);
+
     function initiateSignerRotation(address newSigner) external onlyOwner {
         require(newSigner != address(0), "Invalid signer");
+        require(pendingSigner == address(0), "Rotation already pending");
         pendingSigner = newSigner;
         signerRotationEffectiveAt = block.timestamp + SIGNER_ROTATION_DELAY;
         emit SignerRotationInitiated(newSigner, signerRotationEffectiveAt);
+    }
+
+    function cancelSignerRotation() external onlyOwner {
+        require(pendingSigner != address(0), "No pending rotation");
+        address cancelled = pendingSigner;
+        pendingSigner = address(0);
+        signerRotationEffectiveAt = 0;
+        emit SignerRotationCancelled(cancelled);
     }
 
     function finalizeSignerRotation() external onlyOwner {
