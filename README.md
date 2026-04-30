@@ -95,8 +95,10 @@ Inherits OpenZeppelin `Ownable2Step`. Records are not deletable; revocation only
 
 | Contract | Address |
 |---|---|
-| `OnlyTrustEscrowRouter` | [`0x9bC07C350ECCce55bFf1340B3F82AfFFD96cF885`](https://sepolia.basescan.org/address/0x9bC07C350ECCce55bFf1340B3F82AfFFD96cF885) |
-| `OnlyTrustManifestRegistry` | [`0x73aF0412cC04aE928f545998b644a5fd9ACedCfa`](https://sepolia.basescan.org/address/0x73aF0412cC04aE928f545998b644a5fd9ACedCfa) |
+| `OnlyTrustEscrowRouter` | [`0x6931Aaf1322e713bA8f054398acd8434301B46f9`](https://sepolia.basescan.org/address/0x6931Aaf1322e713bA8f054398acd8434301B46f9) |
+| `OnlyTrustManifestRegistry` | [`0x6Faa1b2931f390a161C92E08E30B5fDc683c4a15`](https://sepolia.basescan.org/address/0x6Faa1b2931f390a161C92E08E30B5fDc683c4a15) |
+
+These match the latest entry in [`broadcast/Deploy.s.sol/84532/run-latest.json`](broadcast/Deploy.s.sol/84532/run-latest.json). Earlier deployments at other addresses exist in the broadcast history but are not the live ones.
 
 Testnet USDC for development can be obtained from the [Circle USDC faucet](https://faucet.circle.com/).
 
