@@ -20,8 +20,8 @@ jobs:
       - run: npm ci --ignore-scripts
       # All vulns are in Hardhat 2.x transitive deps (tmp, undici, serialize-javascript,
       # lodash, mocha). Fixes require Hardhat 3.x (semver-major). These are dev-only
-      # build tools, not deployed contract code. Non-blocking until Hardhat 3 migration.
-      - run: npm audit --audit-level=critical || true
+      # build tools, not deployed contract code. No critical-severity vulns exist.
+      - run: npm audit --audit-level=critical
 
   compile:
     runs-on: ubuntu-latest
