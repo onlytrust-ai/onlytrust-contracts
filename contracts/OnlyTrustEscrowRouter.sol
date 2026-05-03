@@ -41,6 +41,7 @@ contract OnlyTrustEscrowRouter is
         address _owner,
         address _feeRecipient
     ) EIP712("OnlyTrustEscrow", "1") Ownable(_owner) {
+        require(_platformSigner != address(0), "platform signer cannot be zero");
         require(_feeRecipient != address(0), "fee recipient cannot be zero");
         platformSigner = _platformSigner;
         feeRecipient = _feeRecipient;
@@ -134,9 +135,9 @@ contract OnlyTrustEscrowRouter is
     }
 
     function splitSettlement(
-        bytes32 taskId,
+        bytes32,
         uint256 feePercentBps,
-        bytes calldata signature
+        bytes calldata
     ) external override nonReentrant whenNotPaused {
         require(feePercentBps <= 1000, "Max 10% fee");
         revert("Not implemented"); // V2

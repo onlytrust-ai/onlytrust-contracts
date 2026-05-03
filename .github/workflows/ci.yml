@@ -15,7 +15,7 @@ jobs:
           submodules: recursive
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
       - run: npm ci --ignore-scripts
       # All vulns are in Hardhat 2.x transitive deps (tmp, undici, serialize-javascript,
@@ -31,7 +31,7 @@ jobs:
           submodules: recursive
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
       - run: npm ci --ignore-scripts
       - run: npx hardhat compile
@@ -44,7 +44,7 @@ jobs:
           submodules: recursive
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
       - run: npm ci --ignore-scripts
       - uses: foundry-rs/foundry-toolchain@v1
