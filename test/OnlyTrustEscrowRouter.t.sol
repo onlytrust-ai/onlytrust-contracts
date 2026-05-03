@@ -484,4 +484,10 @@ contract OnlyTrustEscrowRouterTest is Test {
         vm.expectRevert("fee recipient cannot be zero");
         new OnlyTrustEscrowRouter(signer, owner, address(0));
     }
+
+    function test_constructor_reverts_for_zero_platformSigner() public {
+        vm.prank(owner);
+        vm.expectRevert("platform signer cannot be zero");
+        new OnlyTrustEscrowRouter(address(0), owner, feeRecipient);
+    }
 }

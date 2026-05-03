@@ -1,5 +1,6 @@
 import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
+import "@nomicfoundation/hardhat-ethers";
+import "@nomicfoundation/hardhat-verify";
 import * as dotenv from "dotenv";
 import * as fs from "fs";
 
@@ -15,6 +16,10 @@ function loadAccountKeysFromFile(keyPath?: string) {
 const deployerAccounts = loadAccountKeysFromFile(process.env.DEPLOYER_KEY_PATH);
 
 const config: HardhatUserConfig = {
+  paths: {
+    sources: "./contracts",
+    tests: "./hardhat-tests",
+  },
   solidity: {
     version: "0.8.28",
     settings: {
@@ -25,16 +30,15 @@ const config: HardhatUserConfig = {
   },
   networks: {
     hardhat: {
-      forking: {
-        url: process.env.BASE_RPC_URL || "https://mainnet.base.org",
-        enabled: false,
-      },
+      type: "edr-simulated",
     },
     baseSepolia: {
+      type: "http",
       url: process.env.BASE_SEPOLIA_RPC_URL || "https://sepolia.base.org",
       accounts: deployerAccounts,
     },
     base: {
+      type: "http",
       url: process.env.BASE_RPC_URL || "https://mainnet.base.org",
       accounts: deployerAccounts,
     },
